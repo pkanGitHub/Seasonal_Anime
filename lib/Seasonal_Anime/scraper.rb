@@ -16,9 +16,9 @@ class Scraper
   def self.periods
     anchors.map do |anchor|
       period = Period.new
-      period.url = anchor.attribute("href")#.value
-      # period.season = anchor.attribute[0]
-      # period.year = anchor.attribute[1]
+      period.url = anchor.attribute("href").value
+      period.season = anchor.text.strip.split[0]
+      period.year = anchor.text.strip.split[1]
       # binding.pry
 
 
