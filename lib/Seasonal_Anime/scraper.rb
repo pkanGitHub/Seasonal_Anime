@@ -7,6 +7,26 @@ class Scraper
 
     binding.pry
   end
+
+  def self.anchors
+    site = Nokogiri::HTML(open("https://myanimelist.net/anime/season/archive"))
+    site.css("table a")
+  end
+
+  def self.periods
+    anchors.map do |anchor|
+      period = Period.new
+      period.url = anchor.attribute("href")#.value
+      # period.season = anchor.attribute[0]
+      # period.year = anchor.attribute[1]
+      # binding.pry
+
+
+
+      period
+    end
+  end
+
 end
 
 
