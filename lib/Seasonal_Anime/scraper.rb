@@ -21,9 +21,23 @@ class Scraper
       period.year = anchor.text.strip.split[1]
       # binding.pry
 
-
-
       period
+    end
+  end
+
+  def self.animes
+    anchors.each do |anchor|
+      anime = Anime.new
+      # anime.name =
+      # anime.score =
+      # anime.synopsis =
+      # anime.episodes =
+      # anime. aired =
+      # anime.genres =
+
+      binding.pry
+
+      # anime
     end
   end
 
