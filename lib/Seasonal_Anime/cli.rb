@@ -18,9 +18,13 @@ class SeasonalAnime::CLI
 
   def year_menu
     year = nil
-    # while input != exit
       puts "Please enter a year: "
       year = gets.strip
+      # while year < 1917
+        # puts "Sorry nothing before 1917 is available, please try again."
+        # puts "Please enter a year: "
+        # year = gets.strip
+      # end
       # puts "If you want to quit, type exit."
   end
 
@@ -40,11 +44,11 @@ class SeasonalAnime::CLI
       when "1"
         winter_anime(year)
       when "2"
-        spring_anime
+        spring_anime(year)
       when "3"
-        self.summer_anime
+        summer_anime(year)
       when "4"
-        fall_anime
+        fall_anime(year)
       when "exit"
         # puts "See you next time!"
       else
@@ -55,21 +59,27 @@ class SeasonalAnime::CLI
 
       def winter_anime(year)
         puts "List of Winter anime"
-        period = Scraper.periods.detect{|period| period.season == "Winter" && period.year == year}
-        binding.pry
-        Anime.all
+        # period = Scraper.periods.detect{|period| period.season == "Winter" && period.year == year}
+        # binding.pry
+
       end
 
-      def spring_anime
+      def spring_anime(year)
         puts "List of Spring anime"
+        # period = Scraper.periods.detect{|period| period.season == "Spring" && period.year == year}
+        # binding.pry
       end
 
-      def summer_anime
+      def summer_anime(year)
         puts "List of Summer anime"
+        # period = Scraper.periods.detect{|period| period.season == "Summer" && period.year == year}
+        # binding.pry
       end
 
-      def fall_anime
+      def fall_anime(year)
         puts "List of Fall anime"
+        # period = Scraper.periods.detect{|period| period.season == "Fall" && period.year == year}
+        # binding.pry
       end
 
 end
@@ -77,73 +87,3 @@ end
     # period.url = anchor.attribute("href").value
     # period.season = anchor.text.strip.split[0]
     # period.year = anchor.text.strip.split[1]
-
-    # def menu
-    #   input = nil
-    #   while input != "exit"
-        # puts "Enter the number for the period you are looking for or type list to see again (or type exit): "
-
-        # puts "Enter the season and year you want to search, ex: 'Summer 2015'"
-        # input = gets.strip.downcase
-        # input.split(" ")[1] # 2015
-        # case input
-#   end
-#
-# end
-#   def list_years
-#     # here doc
-#     puts "List of Years:"
-#     # puts <<-DOC.gsub /^\s*/, ''
-#     #   1.2016
-#     #   2.2017
-#     #   3.2018
-#     #   4.2019
-#     #   5.2020
-#     # DOC
-#     @lists = SeasonalAnime::List.list_years
-#   end
-
-  # def list_seasons
-  #   puts "List of Seasons:"
-  # end
-
-  # def menu
-  #   input = nil
-  #   while input != "exit"
-      # puts "Enter the number for the period you are looking for or type list to see again (or type exit): "
-
-      # puts "Enter the season and year you want to search, ex: 'Summer 2015'"
-      # input = gets.strip.downcase
-      # input.split(" ")[1] # 2015
-      # case input
-
-
-      # when "1"
-      #   puts "List the seasons of 2016"
-      # when "2"
-      #   puts "List the seasons of 2017"
-      # when "3"
-      #   puts "List the seasons of 2018"
-      # when "4"
-      #   puts "List the seasons of 2019"
-      # when "5"
-      #   puts "List the seasons of 2020"
-
-## OR
-#     when "1"
-#       puts "List the anime of Spring 2018"
-#
-#     when "list"
-#
-#         list_years
-#       else
-#         puts "Please only select what is available(1-5 or list or exit)"
-#       end
-#     end
-#   end
-#
-#   def goodbye
-#     puts "See you later!"
-#   end
-#
-# end

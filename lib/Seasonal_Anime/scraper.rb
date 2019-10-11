@@ -1,16 +1,21 @@
 class Scraper
 
-  def self.scrape_animes
-    url = "https://myanimelist.net/anime/season/archive"
-
-    site = Nokogiri::HTML(open(url))
-
-    binding.pry
-  end
+  # def self.scrape_animes_archive
+  #   url = "https://myanimelist.net/anime/season/archive"
+  #
+  #   site = Nokogiri::HTML(open(url))
+  #
+  #   binding.pry
+  # end
 
   def self.anchors
     site = Nokogiri::HTML(open("https://myanimelist.net/anime/season/archive"))
     site.css("table a")
+  end
+
+  def get_season_and_year_page
+    url = period.url
+    site = Nokogiri::HTML(open(url))
   end
 
   def self.periods
