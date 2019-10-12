@@ -5,7 +5,7 @@ class SeasonalAnime::CLI
   def call
       year = year_menu
       season_menu(year)
-      Scraper.periods
+      # Scraper.periods
   end
 
   # class SeasonalAnime::CLI
@@ -59,29 +59,39 @@ class SeasonalAnime::CLI
 
       def winter_anime(year)
         puts "List of Winter anime"
-        # period = Scraper.periods.detect{|period| period.season == "Winter" && period.year == year}
+        period = Period.find_by_season_and_year("Winter", year)
+        period.anime
+
+
         # binding.pry
+        # period = Scraper.periods.detect{|period| period.season == "Winter" && period.year == year}
+
 
       end
 
       def spring_anime(year)
         puts "List of Spring anime"
+        period = Period.find_by_season_and_year("Spring", year)
         # period = Scraper.periods.detect{|period| period.season == "Spring" && period.year == year}
         # binding.pry
+        period.anime
       end
 
       def summer_anime(year)
         puts "List of Summer anime"
+        period = Period.find_by_season_and_year("Summer", year)
         # period = Scraper.periods.detect{|period| period.season == "Summer" && period.year == year}
         # binding.pry
+        period.anime
       end
 
       def fall_anime(year)
         puts "List of Fall anime"
+        period = Period.find_by_season_and_year("Fall", year)
         # period = Scraper.periods.detect{|period| period.season == "Fall" && period.year == year}
         # binding.pry
+        period.anime
       end
-
 end
 
     # period.url = anchor.attribute("href").value
