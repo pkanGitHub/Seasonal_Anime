@@ -15,4 +15,9 @@ class Scraper
       period
     end
   end
+
+  # get the anime list base on the year and season
+  # use scraper to get the list and see how to store
+  # print the list
+
 end

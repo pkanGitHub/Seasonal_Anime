@@ -59,14 +59,12 @@ class SeasonalAnime::CLI
 
       def winter_anime(year)
         puts "List of Winter anime"
+        # Period.make_anime_list
         period = Period.find_by_season_and_year("Winter", year)
-        period.anime
-
-
+        # Period.store_anime.each.with_index do |title, index|
+        #   puts "#{index+1}. #{title}"
+        # end
         # binding.pry
-        # period = Scraper.periods.detect{|period| period.season == "Winter" && period.year == year}
-
-
       end
 
       def spring_anime(year)
