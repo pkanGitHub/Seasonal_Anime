@@ -12,11 +12,20 @@ class Period < SeasonalAnime::CLI
     @@all
   end
 
+  def self.scrape_anime
+    animes = []
+
+    animes << self.periods
+    animes << self.store_detail
+
+    animes
+  end
+
   def self.find_by_season_and_year(season, year)
     period = Scraper.periods.detect{|period| period.season == "#{season}" && period.year == "#{year}"}
   end
 
-  def store_anime(anime) #return array of the anime of t
+  def self.store_detail #return array of the anime of t
     #return all animes in the database
     site = Nokogiri::HTML(open(url))
 
@@ -30,14 +39,6 @@ class Period < SeasonalAnime::CLI
 
     # store the info of an anime
     binding.pry
-    puts anime
     anime
   end
-  # 
-  # def self.get_anime_list()
-  #   list = []
-  #   list << self.store_anime
-  #   binding.pry
-  # end
-
 end

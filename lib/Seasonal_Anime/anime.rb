@@ -10,6 +10,7 @@ class Anime
   def self.all
     @@all
   end
+end
 
   # def self.winter_anime
   #   @@all.select{|anime| anime.season == "Winter"}
@@ -29,4 +30,3 @@ class Anime
   #   puts "List of Fall anime"
   #   @@all.select{|anime| anime.season == "Fall"}
   # end
-end

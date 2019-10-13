@@ -1,20 +1,12 @@
 # Our CLI Controller
-
 class SeasonalAnime::CLI
 
   def call
       year = year_menu
       season_menu(year)
+      self.scrape_anime
       # Scraper.periods
   end
-
-  # class SeasonalAnime::CLI
-  #
-  #   def call
-  #     list_years
-  #     menu
-  #     goodbye
-  #   end
 
   def year_menu
     year = nil
@@ -58,17 +50,17 @@ class SeasonalAnime::CLI
     end
 
       def winter_anime(year)
-        puts "List of Winter anime"
+        puts "List of Winter anime:"
         # Period.make_anime_list
         period = Period.find_by_season_and_year("Winter", year)
-        # Period.store_anime.each.with_index do |title, index|
-        #   puts "#{index+1}. #{title}"
-        # end
-        # binding.pry
+        @animes.store_anime.each.with_index(1) do |title, i|
+          puts "#{i}. #{title}"
+        end
+        binding.pry
       end
 
       def spring_anime(year)
-        puts "List of Spring anime"
+        puts "List of Spring anime:"
         period = Period.find_by_season_and_year("Spring", year)
         # period = Scraper.periods.detect{|period| period.season == "Spring" && period.year == year}
         # binding.pry
@@ -76,22 +68,16 @@ class SeasonalAnime::CLI
       end
 
       def summer_anime(year)
-        puts "List of Summer anime"
+        puts "List of Summer anime:"
         period = Period.find_by_season_and_year("Summer", year)
         # period = Scraper.periods.detect{|period| period.season == "Summer" && period.year == year}
-        # binding.pry
         period.anime
       end
 
       def fall_anime(year)
-        puts "List of Fall anime"
+        puts "List of Fall anime:"
         period = Period.find_by_season_and_year("Fall", year)
         # period = Scraper.periods.detect{|period| period.season == "Fall" && period.year == year}
-        # binding.pry
         period.anime
       end
 end
-
-    # period.url = anchor.attribute("href").value
-    # period.season = anchor.text.strip.split[0]
-    # period.year = anchor.text.strip.split[1]
