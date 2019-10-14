@@ -25,7 +25,7 @@ class Period < SeasonalAnime::CLI
     period = Scraper.periods.detect{|period| period.season == "#{season}" && period.year == "#{year}"}
   end
 
-  def self.store_detail #return array of the anime of t
+  def self.animes #return array of the anime of t
     #return all animes in the database
     site = Nokogiri::HTML(open(url))
 
@@ -37,8 +37,8 @@ class Period < SeasonalAnime::CLI
     anime.source = site.css("span.source").text
     anime.synopsis = site.css("div.synopsis.js-synopsis").text.strip
 
-    # store the info of an anime
-    binding.pry
+
+    # binding.pry
     anime
   end
 end
