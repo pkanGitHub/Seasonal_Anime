@@ -49,37 +49,65 @@ class SeasonalAnime::CLI
       end
     end
 
+    def select_an_anime_for_detail(period)
+      puts "Please select the number of the anime information you want to see: "
+      input = gets.strip.to_i - 1 # index value 0 - max_input
+      max_inputs = period.animes.size - 1
+
+      if input < max_inputs
+        show_anime_details(anime)
+      else
+        puts "Something went wrong, please only input number from 1 - #{max_inputs}"
+        select_an_anime_for_detail(period)
+      end
+
+      #get user selection setup if else..
+
+    end
+
       def winter_anime(year)
         puts "List of Winter anime:"
         # Period.make_anime_list
         period = Period.find_by_season_and_year("Winter", year)
-        Period.all.each.with_index(1) do |title, i|
-          puts "#{i}. #{title}"
+        period.animes.each.with_index(1) do |anime, i|
+          puts "#{i}. #{anime.title}"
         end
+        select_an_anime_for_detail(period)
+
         binding.pry
       end
 
       def spring_anime(year)
         puts "List of Spring anime:"
         period = Period.find_by_season_and_year("Spring", year)
-        # period = Scraper.periods.detect{|period| period.season == "Spring" && period.year == year}
-        # binding.pry
-        period.anime
+        period.animes.each.with_index(1) do |anime, i|
+          puts "#{i}. #{anime.title}"
+        end
+        select_an_anime_for_detail(period)
+
       end
 
       def summer_anime(year)
         puts "List of Summer anime:"
         period = Period.find_by_season_and_year("Summer", year)
-        # period = Scraper.periods.detect{|period| period.season == "Summer" && period.year == year}
-        period.anime
+        period.animes.each.with_index(1) do |anime, i|
+          puts "#{i}. #{anime.title}"
+        end
+        select_an_anime_for_detail(period)
       end
 
       def fall_anime(year)
         puts "List of Fall anime:"
         period = Period.find_by_season_and_year("Fall", year)
-
-        # end
-        # period = Scraper.periods.detect{|period| period.season == "Fall" && period.year == year}
-          # binding.pry
+        period.animes.each.with_index(1) do |anime, i|
+          puts "#{i}. #{anime.title}"
+        end
+        select_an_anime_for_detail(period)
+        show_anime_details(anime)
       end
+
+      def show_anime_details(anime)
+        period.animes(anime)
+      end
+
 end

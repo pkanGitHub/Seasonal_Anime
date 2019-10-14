@@ -11,23 +11,23 @@ class Anime
     @@all
   end
 
-  def titles
-    Period.animes.select{|title| anime.title == title}
-    titles.each{|title| puts title}
-    binding.pry
-  end
-
-  def print_detail_list
-    Period.animes
-    Anime.all.each do |anime|
-      puts "Title: #{anime.title}"
-      puts "Producer: #{anime.producer}"
-      puts "Score: #{anime.score}"
-      puts "Episodes: #{anime.episodes}"
-      puts "Source: #{anime.source}"
-      puts "Synopsis: #{anime.synopsis}"
-    end
-  end
+  # def titles
+  #   Period.animes.select{|title| anime.title == title}
+  #   titles.each{|title| puts title}
+  #   binding.pry
+  # end
+  #
+  # def print_detail_list
+  #   Period.animes
+  #   Anime.all.each do |anime|
+  #     puts "Title: #{anime.title}"
+  #     puts "Producer: #{anime.producer}"
+  #     puts "Score: #{anime.score}"
+  #     puts "Episodes: #{anime.episodes}"
+  #     puts "Source: #{anime.source}"
+  #     puts "Synopsis: #{anime.synopsis}"
+  #   end
+  # end
 
 end
 

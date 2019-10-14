@@ -25,20 +25,20 @@ class Period < SeasonalAnime::CLI
     period = Scraper.periods.detect{|period| period.season == "#{season}" && period.year == "#{year}"}
   end
 
-  def self.animes #return array of the anime of t
+  def animes #return array of the anime of t
     #return all animes in the database
-    site = Nokogiri::HTML(open(url))
+    site = Nokogiri::HTML(open(url)) # url is instance vari so class method cant access instance variables
 
-    anime = Anime.new
-    anime.title = site.css("p.title-text").text.strip
-    anime.producer = site.css("span.producer a").text
-    anime.score = site.css("span.score").text.strip
-    anime.episodes = site.css("div.eps span").text
-    anime.source = site.css("span.source").text
-    anime.synopsis = site.css("div.synopsis.js-synopsis").text.strip
+    site.css("div.seasonal-anime.js-seasonal-anime").map do |div|
+      anime = Anime.new
+      anime.title = div.css("p.title-text").text.strip
+      anime.producer = div.css("span.producer a").text
+      anime.score = div.css("span.score").text.strip
+      anime.episodes = div.css("div.eps span").text
+      anime.source = div.css("span.source").text
+      anime.synopsis = div.css("div.synopsis.js-synopsis").text.strip
 
-
-    # binding.pry
-    anime
+      anime
+  end
   end
 end
