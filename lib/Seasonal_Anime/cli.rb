@@ -34,27 +34,34 @@ class SeasonalAnime::CLI
 
       case season
       when "1"
-        winter_anime(year)
+        season_anime("Winter", year)
       when "2"
-        spring_anime(year)
+        season_anime("Spring", year)
       when "3"
-        summer_anime(year)
+        season_anime("Summer", year)
       when "4"
-        fall_anime(year)
+        season_anime("Fall", year)
       when "exit"
-        # puts "See you next time!"
+        puts "See you next time!"
       else
-        # puts "Please only select from the menu: "
-        # season_menu
+        puts "Please only select from the menu: "
+        season_menu(year)
       end
     end
 
     def select_an_anime_for_detail(period)
+      anime_array = period.animes
       puts "Please select the number of the anime information you want to see: "
       input = gets.strip.to_i - 1 # index value 0 - max_input
-      max_inputs = period.animes.size - 1
+      max_inputs = anime_array.size - 1
+
+      # have an input selecting anime
+      # if input is less than maximum input which is input - 1 to start from 0 index
+      # print detail title, producer, eps...etc of one anime user input
+      #
 
       if input < max_inputs
+        anime = anime_array[input] # The 1 anime object that user selected
         show_anime_details(anime)
       else
         puts "Something went wrong, please only input number from 1 - #{max_inputs}"
@@ -65,10 +72,10 @@ class SeasonalAnime::CLI
 
     end
 
-      def winter_anime(year)
-        puts "List of Winter anime:"
+      def season_anime(season, year)
+        puts "List of #{season} anime:"
         # Period.make_anime_list
-        period = Period.find_by_season_and_year("Winter", year)
+        period = Period.find_by_season_and_year(season, year)
         period.animes.each.with_index(1) do |anime, i|
           puts "#{i}. #{anime.title}"
         end
@@ -77,37 +84,13 @@ class SeasonalAnime::CLI
         binding.pry
       end
 
-      def spring_anime(year)
-        puts "List of Spring anime:"
-        period = Period.find_by_season_and_year("Spring", year)
-        period.animes.each.with_index(1) do |anime, i|
-          puts "#{i}. #{anime.title}"
-        end
-        select_an_anime_for_detail(period)
-
-      end
-
-      def summer_anime(year)
-        puts "List of Summer anime:"
-        period = Period.find_by_season_and_year("Summer", year)
-        period.animes.each.with_index(1) do |anime, i|
-          puts "#{i}. #{anime.title}"
-        end
-        select_an_anime_for_detail(period)
-      end
-
-      def fall_anime(year)
-        puts "List of Fall anime:"
-        period = Period.find_by_season_and_year("Fall", year)
-        period.animes.each.with_index(1) do |anime, i|
-          puts "#{i}. #{anime.title}"
-        end
-        select_an_anime_for_detail(period)
-        show_anime_details(anime)
-      end
-
       def show_anime_details(anime)
-        period.animes(anime)
+          puts "Title: #{anime.title}"
+          puts "Producer: #{anime.producer}"
+          puts "Score: #{anime.score}"
+          puts "Episodes: #{anime.episodes}"
+          puts "Source: #{anime.source}"
+          puts "Synopsis: #{anime.synopsis}"
       end
 
 end
