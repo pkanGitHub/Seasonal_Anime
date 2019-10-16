@@ -4,20 +4,20 @@ class SeasonalAnime::CLI
   def call
       year = year_menu
       season_menu(year)
-      # self.scrape_anime
-      # Scraper.periods
+
   end
 
   def year_menu
     year = nil
       puts "Please enter a year: "
-      year = gets.strip
-      # while year < 1917
-        # puts "Sorry nothing before 1917 is available, please try again."
-        # puts "Please enter a year: "
-        # year = gets.strip
+      year = gets.strip.to_i
+      # if year < 1917    # NO Method Error
+      #   puts "Sorry nothing before 1917 is available, please try again."
+      #   year_menu
+      # elsif year > 2019
+      #   puts "Sorry, the anime over 2019 aren't out yet, please enter the year within the range 1917 and 2019:"
+      #   year_menu
       # end
-      # puts "If you want to quit, type exit."
   end
 
   def season_menu(year)
@@ -53,12 +53,7 @@ class SeasonalAnime::CLI
       anime_array = period.animes
       puts "Please select the number of the anime information you want to see: "
       input = gets.strip.to_i - 1 # index value 0 - max_input
-      max_inputs = anime_array.size - 1
-
-      # have an input selecting anime
-      # if input is less than maximum input which is input - 1 to start from 0 index
-      # print detail title, producer, eps...etc of one anime user input
-      #
+      max_inputs = anime_array.size
 
       if input < max_inputs
         anime = anime_array[input] # The 1 anime object that user selected
@@ -67,8 +62,6 @@ class SeasonalAnime::CLI
         puts "Something went wrong, please only input number from 1 - #{max_inputs}"
         select_an_anime_for_detail(period)
       end
-
-      #get user selection setup if else..
 
     end
 
@@ -81,7 +74,6 @@ class SeasonalAnime::CLI
         end
         select_an_anime_for_detail(period)
 
-        binding.pry
       end
 
       def show_anime_details(anime)
