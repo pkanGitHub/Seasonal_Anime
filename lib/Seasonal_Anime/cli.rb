@@ -58,7 +58,7 @@ class SeasonalAnime::CLI
       input = gets.strip.to_i - 1 # index value 0 - max_input
       max_inputs = anime_array.size
 
-      if input < max_inputs
+      if input > 0 && input < max_inputs
         anime = anime_array[input] # The 1 anime object that user selected
         puts "\n"
         show_anime_details(anime)
@@ -77,7 +77,6 @@ class SeasonalAnime::CLI
           puts "#{i}. #{anime.title}"
         end
         select_an_anime_for_detail(period)
-
       end
 
       def show_anime_details(anime)
