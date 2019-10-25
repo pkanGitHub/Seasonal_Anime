@@ -39,6 +39,16 @@ class Period < SeasonalAnime::CLI
       anime.synopsis = div.css("div.synopsis.js-synopsis").text.strip
 
       anime
+    end
   end
-  end
+
+  # def anime_with_keyword_in_title(keyword)
+  #   arr = []
+  #   self.animes.each do |anime|
+  #     if anime.title.downcase.include?(keyword)
+  #       arr << anime
+  #     end
+  #   end
+  #   arr
+  # end
 end

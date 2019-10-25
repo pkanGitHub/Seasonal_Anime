@@ -58,7 +58,7 @@ class SeasonalAnime::CLI
       input = gets.strip.to_i - 1 # index value 0 - max_input
       max_inputs = anime_array.size
 
-      if input > 0 && input < max_inputs
+      if input >= 0 && input < max_inputs
         anime = anime_array[input] # The 1 anime object that user selected
         puts "\n"
         show_anime_details(anime)
@@ -73,6 +73,9 @@ class SeasonalAnime::CLI
         puts "\nList of #{season} anime:"
         period = Period.find_by_season_and_year(season, year)
         puts "#{season}, #{year}\n\n"
+        # can also work on: having user to input keyword to find anime.
+        # anime_with_keyword_in_title = period.anime_with_keyword_in_title
+        # anime_with_keyword_in_title.each.with_index(1) do |anime, i|
         period.animes.each.with_index(1) do |anime, i|
           puts "#{i}. #{anime.title}"
         end
